@@ -16,8 +16,10 @@ namespace Cars.API.Interfaces
 
         string RemoveWheels(int id, int wheelCountToRemove);
 
-        string ChangeColor(int id, string currentColor, string newColor);
+        string ChangeColor(int id, string newColor);
 
-        string CarSale(int id, bool sold);
+        string CarSale(int id);
+
+        string GetSoldCars();
     }
 }

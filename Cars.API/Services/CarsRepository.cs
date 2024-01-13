@@ -1,6 +1,7 @@
 ﻿using Cars.API.Interfaces;
 using Cars.API.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace Cars.API.Services
 {
@@ -10,7 +11,8 @@ namespace Cars.API.Services
         {
             new Car(1, "Tesla", 1, "Red", false),
             new Car(2, "Audi", 6, "Black", false),
-            new Car(3, "BMW", 4, "Gray", false)
+            new Car(3, "BMW", 4, "Gray", false),
+            new Car(4, "Lambogini", 4, "Orange", false)
         };
 
         public List<Car> GetAll()
@@ -53,31 +55,34 @@ namespace Cars.API.Services
             return $"Removed {wheelCountToRemove} wheels from {existingCar.Name}";
         }
 
-        public string ChangeColor(int id, string currentColor, string newColor)
+        public string ChangeColor(int id, string newColor)
         {
             var existingCar = GetById(id);
             var carName = existingCar.Name;
-            currentColor = existingCar.Color;
-            var paintedCar = existingCar.Color = newColor;
-            return $"{carName} is color washed from {currentColor} to {paintedCar}";
+            var currentColor = existingCar.Color;
+            existingCar.Color = newColor;
+            return $"{carName} is color washed from {currentColor} to {newColor}";
         }
 
-        public string CarSale(int id, bool sold)
+        public string CarSale(int id)
         {
             var existingCar = GetById(id);
-            var car = existingCar.Name;
-            sold = existingCar.Sold;
-            
-            if (sold)
+            var carName = existingCar.Name;
+            existingCar.Sold = true;
+            return $"{carName} car is sold!";
+        }
+
+        public string GetSoldCars()
+        {
+            var soldCars = Cars.Where(c => c.Sold == true).ToArray();
+            StringBuilder getSoldCars = new StringBuilder();
+
+            for (int i = 0; i < soldCars.Length; i++)
             {
-                return $"{car} car was Sold!";
-                sold = true;
+                getSoldCars.AppendLine($"Sold Cars : {soldCars[i].Name}");              
             }
-            else
-            {
-                return $"{car} car was not Sold!";
-                sold = false;
-            }
+
+            return getSoldCars.ToString();
         }
     }
 }

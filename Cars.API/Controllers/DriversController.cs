@@ -44,5 +44,17 @@ namespace Cars.API.Controllers
         {
             return _driverRepository.DeleteDriver(id);
         }
+
+        [HttpPut("find-retired-drivers")]
+        public string FindRetiredDrivers()
+        {
+            return _driverRepository.FindRetiredDrivers();
+        }
+        
+        //[HttpGet("retired/drivers")]
+        //public string GetRetiredDrivers()
+        //{
+        //    return _driverRepository.GetRetiredDrivers();
+        //}
     }
 }

@@ -51,16 +51,22 @@ namespace Cars.API.Controllers
             return _carsRepository.Delete(id);
         }
 
-        [HttpPut("{id}/new-color{newColor}")]
-        public string ChangeColor(int id, string currentColor, string newColor)
+        [HttpPut("{id}/change-color")]
+        public string ChangeColor(int id, string newColor)
         {
-            return _carsRepository.ChangeColor(id, currentColor, newColor);
+            return _carsRepository.ChangeColor(id, newColor);
         }
 
-        [HttpPut("{id}/car-sale")]
-        public string CarSale(int id, bool sold)
+        [HttpPut("{id}/sell")]
+        public string CarSale(int id)
         {
-            return _carsRepository.CarSale(id, sold);
+            return _carsRepository.CarSale(id);
+        }
+
+        [HttpGet("get-sold-cars")]
+        public string GetSoldCars()
+        {
+            return _carsRepository.GetSoldCars();
         }
     }
 }
