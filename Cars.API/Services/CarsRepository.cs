@@ -8,10 +8,11 @@ namespace Cars.API.Services
     {
         private static List<Car> Cars = new List<Car>
         {
-            new Car(1, "Tesla", 1, "Red", false),
-            new Car(2, "Audi", 6, "Black", false),
+            new Car(1, "Tesla", 4, "Red", false),
+            new Car(2, "Audi", 8, "Black", false),
             new Car(3, "BMW", 4, "Gray", false),
-            new Car(4, "Lambogini", 4, "Orange", false)
+            new Car(4, "Lambogini", 6, "Orange", false),
+            new Car(5, "Ferrari", 4, "Red", false)
         };
 
         public List<Car> GetAll()
