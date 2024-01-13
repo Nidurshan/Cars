@@ -1,6 +1,5 @@
 ﻿using Cars.API.Interfaces;
 using Cars.API.Models;
-using System.Text;
 
 namespace Cars.API.Services
 {
