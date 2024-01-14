@@ -50,6 +50,11 @@ namespace Cars.API.Controllers
         {
             return _driverRepository.ManageRetiredDrivers();
         }
-        
+
+        [HttpGet("retired/drivers")]
+        public List<Driver> GetRetiredDrivers()
+        {
+            return _driverRepository.GetRetiredDrivers();
+        }
     }
 }

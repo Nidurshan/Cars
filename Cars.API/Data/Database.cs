@@ -19,7 +19,7 @@ namespace Cars.API.Data
             new Driver(1, "John", 30, false),
             new Driver(2, "Sam", 51, false),
             new Driver(3, "Harry", 50, false),
-            new Driver(4, "Tom", 60, false)
+            new Driver(4, "Tom", 16, false)
         };
     }
 }

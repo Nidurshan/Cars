@@ -56,7 +56,14 @@ namespace Cars.API.Services
 
             var dateTimeNow = DateTimeOffset.UtcNow.ToString("dd/MM/yyyy HH:mm:ss");
 
-            return $"Marked {count} drivers as retired on {dateTimeNow}";
+            var message = count == 0 ? "No retired drivers." : $"Marked {count} drivers as retired on {dateTimeNow}";
+            return message;
+        }
+
+        public List<Driver> GetRetiredDrivers()
+        {
+            var retiredDrivers = drivers.Where(d => d.Retired).ToList();
+            return retiredDrivers;
         }
     }
 }
