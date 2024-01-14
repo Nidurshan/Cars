@@ -1,6 +1,7 @@
 ﻿using Cars.API.Data;
 using Cars.API.Interfaces;
 using Cars.API.Models;
+using System.Collections.Specialized;
 
 namespace Cars.API.Services
 {
@@ -40,20 +41,22 @@ namespace Cars.API.Services
             return id;
         }
 
-        public List<Driver> FindRetiredDrivers()
+        public string ManageRetiredDrivers()
         {
-            List<Driver> retiredDrivers = new List<Driver>();
+            var count = 0;
 
             for (int i = 0; i < drivers.Count; i++)
             {
                 if (drivers[i].Age > 50)
                 {
                     drivers[i].Retired = true;
-                    retiredDrivers.Add(drivers[i]);
+                    count++;
                 }
             }
 
-            return retiredDrivers;
+            var dateTimeNow = DateTimeOffset.UtcNow.ToString("dd/MM/yyyy HH:mm:ss");
+
+            return $"Marked {count} drivers as retired on {dateTimeNow}";
         }
     }
 }
