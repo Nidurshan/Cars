@@ -1,4 +1,5 @@
-﻿using Cars.API.Interfaces;
+﻿using Cars.API.Data;
+using Cars.API.Interfaces;
 using Cars.API.Models;
 using System.Text;
 
@@ -6,28 +7,21 @@ namespace Cars.API.Services
 {
     public class CarsRepository : ICarsRepository
     {
-        private static List<Car> Cars = new List<Car>
-        {
-            new Car(1, "Tesla", 4, "Red", false),
-            new Car(2, "Audi", 8, "Black", false),
-            new Car(3, "BMW", 4, "Gray", false),
-            new Car(4, "Lambogini", 6, "Orange", false),
-            new Car(5, "Ferrari", 4, "Red", false)
-        };
+        private static List<Car> cars = Database.Cars;
 
         public List<Car> GetAll()
         {
-            return Cars;
+            return cars;
         }
 
         public Car GetById(int id)
         {
-            return Cars.Single(c => c.Id == id);
+            return cars.Single(c => c.Id == id);
         }
 
         public int Create(Car car)
         {
-            Cars.Add(car);
+            cars.Add(car);
             return car.Id;
         }
 
@@ -44,7 +38,7 @@ namespace Cars.API.Services
         {
             //var existingCar = Cars.Single(c => c.Id == id);
             var existingCar = GetById(id);
-            Cars.Remove(existingCar);
+            cars.Remove(existingCar);
             return existingCar.Id;
         }
 
@@ -74,12 +68,12 @@ namespace Cars.API.Services
 
         public string GetSoldCars()
         {
-            var soldCars = Cars.Where(c => c.Sold == true).ToArray();
-            StringBuilder getSoldCars = new StringBuilder();
+            var soldCars= cars.Where(c => c.Sold == true).ToArray();
+            StringBuilder getSoldCars= new StringBuilder();
 
             for (int i = 0; i < soldCars.Length; i++)
             {
-                getSoldCars.AppendLine($"Sold Cars : {soldCars[i].Name}");              
+                getSoldCars.AppendLine($"Sold cars: {soldCars[i].Name}");              
             }
 
             return getSoldCars.ToString();

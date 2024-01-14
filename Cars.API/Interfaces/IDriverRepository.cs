@@ -14,8 +14,6 @@ namespace Cars.API.Interfaces
 
         int DeleteDriver(int id);
 
-        string FindRetiredDrivers();
-
-        //string GetRetiredDrivers();
+        List<Driver> FindRetiredDrivers();
     }
 }

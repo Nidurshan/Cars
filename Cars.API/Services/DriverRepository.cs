@@ -1,17 +1,12 @@
-﻿using Cars.API.Interfaces;
+﻿using Cars.API.Data;
+using Cars.API.Interfaces;
 using Cars.API.Models;
 
 namespace Cars.API.Services
 {
     public class DriverRepository : IDriverRepository
     {
-        public static List<Driver> drivers = new List<Driver>()
-        {
-            new Driver(1, "John", 30, false),
-            new Driver(2, "Sam", 51, false),
-            new Driver(3, "Harry", 40, false),
-            new Driver(4, "Tom", 60, false)
-        };
+        public static List<Driver> drivers = Database.Drivers;
 
         public List<Driver> GetDrivers()
         {
@@ -45,26 +40,20 @@ namespace Cars.API.Services
             return id;
         }
 
-        public string FindRetiredDrivers()
+        public List<Driver> FindRetiredDrivers()
         {
-            List<string> retiredDrivers = new List<string>();
+            List<Driver> retiredDrivers = new List<Driver>();
 
             for (int i = 0; i < drivers.Count; i++)
             {
-                if (drivers[i].Age >= 50)
+                if (drivers[i].Age > 50)
                 {
                     drivers[i].Retired = true;
-                    retiredDrivers.Add(drivers[i].Name);
+                    retiredDrivers.Add(drivers[i]);
                 }
             }
 
-            string retiredDriversString = string.Join(", ", retiredDrivers);
-            return retiredDriversString;
+            return retiredDrivers;
         }
-
-        //public string GetRetiredDrivers()
-        //{
-            
-        //}
     }
 }
